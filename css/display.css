@@ -1,0 +1,47 @@
+/* TV display for the prayer hall — scales with the screen size (vw/vh units). */
+:root { --gold: #db9e30; --gold-l: #f0c777; --bg: #15110d; --card: #221b14; --line: rgba(255, 255, 255, .09); --text: #f4ede0; --muted: #b9ad98; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: "Mulish", system-ui, sans-serif; overflow: hidden; }
+html[lang="ar"] body { font-family: "Tajawal", system-ui, sans-serif; }
+body { background: radial-gradient(70% 60% at 50% 0, #2c2117, var(--bg)); cursor: none; }
+body:hover { cursor: default; }
+.board { height: 100%; display: grid; grid-template-rows: auto 1fr auto auto; gap: 2.2vh; padding: 3vh 3vw; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 2vw; }
+.brand { display: flex; align-items: center; gap: 1vw; font: 700 clamp(18px, 2.6vw, 54px) "Scheherazade New", serif; }
+html[lang="ar"] .brand { font-family: "Amiri", serif; }
+.brand svg { width: 3.4vw; min-width: 28px; color: var(--gold); }
+.dates { display: grid; text-align: end; font-size: clamp(13px, 1.5vw, 32px); color: var(--muted); }
+.dates span:last-child { color: var(--gold-l); font-weight: 700; }
+.center { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3vw; }
+.clock { font: 800 clamp(60px, 13vw, 300px) / 1 "Mulish", sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -.02em; direction: ltr; text-align: center; }
+.status { text-align: center; padding: 3vh 2vw; border-radius: 2vw; border: 1px solid rgba(219, 158, 48, .35); background: radial-gradient(120% 140% at 100% 0, rgba(219, 158, 48, .22), transparent 60%), var(--card); }
+.status p { margin: 0; }
+.status__label { color: var(--gold-l); font-weight: 800; text-transform: uppercase; letter-spacing: .12em; font-size: clamp(12px, 1.4vw, 30px); }
+html[lang="ar"] .status__label { letter-spacing: 0; }
+.status__name { font: 700 clamp(30px, 5vw, 120px) / 1.2 "Scheherazade New", serif; }
+html[lang="ar"] .status__name { font-family: "Amiri", serif; }
+.status__cd { font: 800 clamp(30px, 5.4vw, 130px) / 1 "Mulish", sans-serif; color: var(--gold); font-variant-numeric: tabular-nums; direction: ltr; }
+.status.is-iqama { border-color: var(--gold); animation: glow 2s ease-in-out infinite; }
+@keyframes glow { 50% { box-shadow: 0 0 4vw rgba(219, 158, 48, .45); } }
+.row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.2vw; }
+.p { display: grid; gap: .4vh; text-align: center; padding: 2.4vh 1vw; border-radius: 1.4vw; background: var(--card); border: 1px solid var(--line); }
+.p__name { font-weight: 800; font-size: clamp(14px, 1.8vw, 40px); }
+.p__ar { font-family: "Amiri", serif; color: var(--muted); font-size: clamp(13px, 1.6vw, 36px); line-height: 1.2; }
+html[lang="ar"] .p__ar { display: none; }
+.p__time { font: 800 clamp(22px, 3.4vw, 80px) / 1.15 "Mulish", sans-serif; color: var(--gold-l); font-variant-numeric: tabular-nums; }
+.p__iq { color: var(--muted); font-size: clamp(11px, 1.25vw, 28px); }
+.p--sun { opacity: .65; }
+.p.is-next { background: linear-gradient(160deg, var(--gold), #b97f17); border-color: transparent; }
+.p.is-next .p__name, .p.is-next .p__time, .p.is-next .p__iq, .p.is-next .p__ar { color: #fff; }
+.bottom { display: flex; justify-content: space-between; align-items: center; gap: 2vw; padding-top: 1.6vh; border-top: 1px solid var(--line); font-size: clamp(13px, 1.5vw, 34px); }
+.bottom p { margin: 0; }
+.ticker { color: var(--text); font-family: "Amiri", serif; transition: opacity .8s; }
+.ticker.is-fading { opacity: 0; }
+.jumuah { color: var(--gold-l); font-weight: 700; white-space: nowrap; }
+.fs { position: fixed; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--text); font-size: 20px; opacity: 0; transition: opacity .3s; cursor: pointer; }
+body:hover .fs { opacity: 1; }
+@media (max-aspect-ratio: 1/1) {
+  .center { grid-template-columns: 1fr; }
+  .row { grid-template-columns: repeat(3, 1fr); }
+  .bottom { flex-direction: column; text-align: center; }
+}
