@@ -4,6 +4,8 @@ Free mosque website template: live prayer times for any city, Qibla, monthly tim
 
 **Live demo:** https://abdelmoulabilel.github.io/mosque-website-template/
 
+**Built by:** [Bilel Abdelmoula](https://bilelabdelmoula.dev), full-stack developer.
+
 ![Preview](preview.webp)
 
 ## Use it
